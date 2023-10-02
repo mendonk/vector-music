@@ -25,7 +25,7 @@ To do:
 NOTE: 
 This repo contains Pop_Music_Midi, a directory with MIDI material for training.
 
-1. Clone this repo
+1. Clone this repo `git clone https://github.com/mendonk/vector-music.git`
 2. CD to /Python. 
 3. Create a virtual environment and build the project from requirements.txt:
 ```python
