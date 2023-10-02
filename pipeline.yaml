@@ -1,0 +1,23 @@
+name: "Tensorflow music processor"
+topics:
+  - name: "midi-to-vector-input-topic"
+    creation-mode: create-if-not-exists
+  - name: "midi-to-vector-output-topic"
+    creation-mode: create-if-not-exists
+  - name: "vector-to-song-input-topic"
+    creation-mode: create-if-not-exists
+  - name: "vector-to-song-output-topic"
+    creation-mode: create-if-not-exists
+pipeline:
+  - name: "One-shot vectorize midi data in annoy db"
+    type: "python-processor"
+    input: "training-input-topic"
+    output: "midi-to-vector-output-topic"
+    configuration:
+      className: vectorize-midi.MidiVectorizer
+  - name: "Make a song with tensorflow over stored midi data"
+    type: "python-processor"
+    input: "vector-to-song-input-topic"
+    output: "vector-to-song-output-topic"
+    configuration:
+      className: train-model.MidiGenerator
